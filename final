@@ -1,0 +1,17 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from statsmodels.formula.api import ols
+
+df = pd.read_csv(r"C:\Users\whisp\Desktop\school stuff\ICS 173\test2.csv", encoding= 'unicode_escape')
+
+plt.title('ORP vs Temp', fontsize=18)
+
+sns.regplot(df["ORP"], df["Temp"], x_bins=1000, ci=None, fit_reg=True);
+
+plt.savefig("Compare.png")
+plt.show()
+
+results = ols('ORP ~ Temp', data=df).fit()
+
+print(results.summary())
